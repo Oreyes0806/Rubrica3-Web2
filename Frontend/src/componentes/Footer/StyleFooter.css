@@ -1,0 +1,19 @@
+.footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+    background-color: #1DB0E6;
+    gap: .5rem;
+}
+.footer h2{
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2D2D2D;
+}
+.footer p{
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #2D2D2D;
+}
