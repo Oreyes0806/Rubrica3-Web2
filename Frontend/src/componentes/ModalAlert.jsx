@@ -12,7 +12,7 @@ export const ModalAlert = ({message}) => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined, 
-        theme: "dark"
+        theme: "colored"
     });
     }else{
       toast.warn(message.message, {
@@ -22,8 +22,8 @@ export const ModalAlert = ({message}) => {
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        progress: undefined, 
-        theme: "dark"
+        progress: undefined,
+        theme: "colored"
     });
     }
   
