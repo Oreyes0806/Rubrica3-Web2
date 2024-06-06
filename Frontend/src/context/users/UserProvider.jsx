@@ -27,7 +27,7 @@ export const UserProvider = ({children}) => {
             const {data} = await axios.post(`${URL_API}/users/register`,values, { withCredentials: true }) 
             if(data){
                 setUser(data)
-                handleAlert({message:"Creado correctamente", success:true})
+                handleAlert({message:"Creado correctamente", success:true});
             }
         } catch (error) {
             console.log(error)
