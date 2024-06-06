@@ -32,7 +32,7 @@ export const UserProvider = ({children}) => {
         } catch (error) {
             console.log(error)
             seterror(error)
-            handleAlert({message: error, success:false})
+            handleAlert({message: error.message, success:false})
         }
         
     }
@@ -44,10 +44,10 @@ export const UserProvider = ({children}) => {
                 navigate('/')
                 handleAlert({message:"Inicio Sesion Corrrecto", success:true})
             }
-        } catch ({response}) {
-            console.log(response.data.message)
-            seterror(response.data.message)
-            handleAlert({message: response.data.message, success:false})
+        } catch (error) {
+            console.log(error)
+            seterror(error)
+            handleAlert({message: error.message, success:false})
           
         }
     }
@@ -59,7 +59,7 @@ export const UserProvider = ({children}) => {
         } catch (error) {
             console.log(error)
             seterror(error)
-            handleAlert({message: response.data.message, success:false})
+            handleAlert({message:error, success:false})
         }
     }
     const editarPerfil = async(values)=>{
@@ -73,7 +73,7 @@ export const UserProvider = ({children}) => {
         } catch (error) {
             console.log(error)
             seterror(error)
-            handleAlert({message: error, success:false})
+            handleAlert({message: error.message, success:false})
         }
     }
     useEffect(() => {
