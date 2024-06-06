@@ -11,7 +11,8 @@ export const CreateUser = async(req,res)=>{
         const [response] = await pool.query('INSERT INTO users (nombre, apellido, telefono, email, password) VALUES (?, ?, ?, ?, ?)', [nombre, apellido, telefono, email, passwordEncriptada])
         if(response.affectedRows === 0) return res.status(404).send({message: 'No se pudo registrar'})
         const idusers = response.insertId
-        jwt.sign({idusers, nombre, apellido, telefono, email}, JWT_KEYSECRET,   { expiresIn: '1h' }, (error, token) => {
+        const user = {idusers, nombre, apellido, telefono, email}
+        jwt.sign(user, JWT_KEYSECRET,   { expiresIn: '1h' }, (error, token) => {
             if (error) return console.log(error);
             res.cookie('token', token);
             res.status(200).send({ idusers, nombre, apellido, telefono, email });
@@ -43,8 +44,7 @@ export const Login = async (req, res) => {
         }
         delete user.password;
 
-
-        jwt.sign({user},JWT_KEYSECRET, { expiresIn: '1h' }, (error, token) => {
+        jwt.sign(user,JWT_KEYSECRET, { expiresIn: '1h' }, (error, token) => {
             if (error) {
                 console.log(`Error en token: ${error}`);
                 return res.send("Error al generar el token" );
