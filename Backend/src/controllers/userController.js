@@ -49,6 +49,7 @@ export const Login = async (req, res) => {
                 console.log(`Error en token: ${error}`);
                 return res.send("Error al generar el token" );
             }
+            console.log(token)
             res.cookie('token', token);
             res.status(200).send(user);
         });
