@@ -30,8 +30,8 @@ export const UserProvider = ({children}) => {
                 handleAlert({message:"Creado correctamente", success:true});
             }
         } catch (error) {
-            console.log(error)
-            seterror(error)
+            console.log(error.message)
+            seterror(error.message)
             handleAlert({message: error.message, success:false})
         }
         
@@ -45,8 +45,8 @@ export const UserProvider = ({children}) => {
                 handleAlert({message:"Inicio Sesion Corrrecto", success:true})
             }
         } catch (error) {
-            console.log(error)
-            seterror(error)
+            console.log(error.message)
+            seterror(error.message)
             handleAlert({message: error.message, success:false})
           
         }
@@ -57,22 +57,23 @@ export const UserProvider = ({children}) => {
             if(data)setUser(null)
                 
         } catch (error) {
-            console.log(error)
-            seterror(error)
-            handleAlert({message:error, success:false})
+            console.log(error.message)
+            seterror(error.message)
+            handleAlert({message:error.message, success:false})
         }
     }
     const editarPerfil = async(values)=>{
         try {
-            const {data} = await axios.put(`${URL_API}/users/profile`, {id:user.idusers, email:user.email, values})
+            
+            const {data} = await axios.put(`${URL_API}/users/profile`, {id:user.idusers, email:user.email, values, token: Cookies.get('token')})
             if(data){
                 delete values.passsword
                 setUser({...user, values})
                 handleAlert({message:"Actualizado Correctamente", success:true})
             }
         } catch (error) {
-            console.log(error)
-            seterror(error)
+            console.log(error.message)
+            seterror(error.message)
             handleAlert({message: error.message, success:false})
         }
     }
